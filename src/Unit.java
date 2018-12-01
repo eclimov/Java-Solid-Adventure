@@ -8,7 +8,7 @@ public class Unit implements IAttacker, IUnit {
 
     @Override
     public Unit spawn() {
-        System.out.printf(this.getClass().getName() + " spawned (%s)%n", ((IRace)this).greeting());
+        System.out.printf(this.getClass().getName() + " spawned ('%s')%n", ((IRace)this).greeting());
 
         return this;
     }
