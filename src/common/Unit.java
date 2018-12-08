@@ -1,3 +1,9 @@
+package common;
+
+import common.interfaces.IAttacker;
+import common.interfaces.IRace;
+import common.interfaces.IUnit;
+
 public class Unit implements IAttacker, IUnit {
     private boolean dead = false;
 

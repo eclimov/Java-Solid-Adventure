@@ -1,3 +1,5 @@
+package common.interfaces;
+
 public interface IUnit {
     IUnit spawn();
 
