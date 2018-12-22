@@ -2,6 +2,8 @@ package common.factory;
 
 import common.Unit;
 import neutrals.NeutralArcher;
+import neutrals.NeutralCommander;
+import neutrals.NeutralDragon;
 import neutrals.NeutralSolder;
 
 public class NeutralFactory extends AbstractFactory {
@@ -24,6 +26,12 @@ public class NeutralFactory extends AbstractFactory {
 
             case "archer":
                 return new NeutralArcher();
+
+            case "commander":
+                return new NeutralCommander();
+
+            case "dragon":
+                return new NeutralDragon();
 
             default:
                 return null;

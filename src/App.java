@@ -19,13 +19,19 @@ import java.util.Random;
 
 public class App {
     public static void main(String[] args) {
-        ArrayList<String> unitTypes = new ArrayList<String>();
-        unitTypes.add("commander");
-        unitTypes.add("dragon");
-        unitTypes.add("mage");
-        unitTypes.add("soldier");
-        unitTypes.add("witch");  // enemies only
-        unitTypes.add("archer");  // neutrals only
+        ArrayList<String> commonTypes = new ArrayList<String>();
+        commonTypes.add("soldier");
+        commonTypes.add("commander");
+        commonTypes.add("dragon");
+
+        ArrayList<String> allyTypes = (ArrayList<String>) commonTypes.clone();
+        allyTypes.add("mage");
+
+        ArrayList<String> enemyTypes = (ArrayList<String>) commonTypes.clone();
+        enemyTypes.add("witch");
+
+        ArrayList<String> neutralTypes = (ArrayList<String>) commonTypes.clone();
+        neutralTypes.add("archer");
 
         AbstractFactory allyFactory = FactoryProducer.getFactory("ally");
         AbstractFactory enemyFactory = FactoryProducer.getFactory("enemy");
@@ -37,15 +43,15 @@ public class App {
         int neutralsJoinedToAllies = (new Random()).nextInt(3);  // Number of neutrals to join ally army
         System.out.println("*Allies*");
         for (int i = 0; i < armyNumber; i++) {
-            Unit unit = allyFactory.getAlly(getRandomItem(unitTypes));
+            Unit unit = allyFactory.getAlly(getRandomItem(allyTypes));
             if(unit != null) {
                 allyArmy.add(unit.spawn());
             }
 
             if(i < neutralsJoinedToAllies) {
-                Unit neutral = neutralFactory.getNeutral(getRandomItem(unitTypes));
+                Unit neutral = neutralFactory.getNeutral(getRandomItem(neutralTypes));
                 if(neutral != null) {
-                    allyArmy.add(neutral);
+                    allyArmy.add(neutral.spawn());
                 }
             }
         }
@@ -56,15 +62,15 @@ public class App {
         int neutralsJoinedToEnemies = (new Random()).nextInt(3);  // Number of neutrals to join enemy army
         System.out.println("*Enemies*");
         for (int i = 0; i < armyNumber; i++) {
-            Unit unit = enemyFactory.getEnemy(getRandomItem(unitTypes));
+            Unit unit = enemyFactory.getEnemy(getRandomItem(enemyTypes));
             if(unit != null) {
                 enemyArmy.add(unit.spawn());
             }
 
             if(i < neutralsJoinedToEnemies) {
-                Unit neutral = neutralFactory.getNeutral(getRandomItem(unitTypes));
+                Unit neutral = neutralFactory.getNeutral(getRandomItem(neutralTypes));
                 if(neutral != null) {
-                    enemyArmy.add(neutral);
+                    enemyArmy.add(neutral.spawn());
                 }
             }
         }
