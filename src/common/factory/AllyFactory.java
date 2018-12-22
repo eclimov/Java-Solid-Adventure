@@ -7,6 +7,19 @@ import allies.AllySoldier;
 import common.Unit;
 
 public class AllyFactory extends AbstractFactory {
+    private static AllyFactory allyFactoryInstance;
+
+    private AllyFactory(){};
+
+    public static AllyFactory getInstance()
+    {
+        if(allyFactoryInstance == null) {
+            allyFactoryInstance = new AllyFactory();
+        }
+
+        return allyFactoryInstance;
+    }
+
     @Override
     public Unit getAlly(String unitType) {
         unitType = unitType.toLowerCase();

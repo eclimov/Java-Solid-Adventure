@@ -58,9 +58,7 @@ public class App {
                     .setName(getRandomItem(possibleNames))
                     .setAge(20 + (new Random()).nextInt(30))
                     .spawn();
-            if(unit != null) {
-                allyArmy.add(unit);
-            }
+            allyArmy.add(unit);
 
             if(i < neutralsJoinedToAllies) {
                 Unit neutral = neutralFactory
@@ -68,9 +66,7 @@ public class App {
                         .setName(getRandomItem(possibleNames))
                         .setAge(20 + (new Random()).nextInt(30))
                         .spawn();
-                if(neutral != null) {
-                    allyArmy.add(neutral);
-                }
+                allyArmy.add(neutral);
             }
         }
 
@@ -85,9 +81,7 @@ public class App {
                     .setName(getRandomItem(possibleNames))
                     .setAge(20 + (new Random()).nextInt(30))
                     .spawn();
-            if(unit != null) {
-                enemyArmy.add(unit);
-            }
+            enemyArmy.add(unit);
 
             if(i < neutralsJoinedToEnemies) {
                 Unit neutral = neutralFactory
@@ -95,9 +89,7 @@ public class App {
                         .setName(getRandomItem(possibleNames))
                         .setAge(20 + (new Random()).nextInt(30))
                         .spawn();
-                if(neutral != null) {
-                    enemyArmy.add(neutral);
-                }
+                enemyArmy.add(neutral);
             }
         }
 

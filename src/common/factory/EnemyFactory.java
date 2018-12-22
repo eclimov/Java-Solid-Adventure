@@ -7,6 +7,19 @@ import enemies.EnemySoldier;
 import enemies.EnemyWitch;
 
 public class EnemyFactory extends AbstractFactory {
+    private static EnemyFactory enemyFactoryInstance;
+
+    private EnemyFactory(){};
+
+    public static EnemyFactory getInstance()
+    {
+        if(enemyFactoryInstance == null) {
+            enemyFactoryInstance = new EnemyFactory();
+        }
+
+        return enemyFactoryInstance;
+    }
+
     @Override
     public Unit getAlly(String unitType) {
         return null;

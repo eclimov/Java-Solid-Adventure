@@ -5,13 +5,13 @@ public class FactoryProducer {
         type = type.toLowerCase();
         switch (type) {
             case "ally":
-                return new AllyFactory();
+                return AllyFactory.getInstance();
 
             case "enemy":
-                return new EnemyFactory();
+                return EnemyFactory.getInstance();
 
             case "neutral":
-                return new NeutralFactory();
+                return NeutralFactory.getInstance();
 
             default:
                 return null;

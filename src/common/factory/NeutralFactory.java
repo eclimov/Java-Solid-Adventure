@@ -7,6 +7,19 @@ import neutrals.NeutralDragon;
 import neutrals.NeutralSolder;
 
 public class NeutralFactory extends AbstractFactory {
+    private static NeutralFactory neutralFactoryInstance;
+
+    private NeutralFactory(){};
+
+    public static NeutralFactory getInstance()
+    {
+        if(neutralFactoryInstance == null) {
+            neutralFactoryInstance = new NeutralFactory();
+        }
+
+        return neutralFactoryInstance;
+    }
+
     @Override
     public Unit getAlly(String unitType) {
         return null;
