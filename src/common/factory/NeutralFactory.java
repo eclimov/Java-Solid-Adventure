@@ -21,7 +21,7 @@ public class NeutralFactory extends AbstractFactory {
     public Unit getNeutral(String unitType) {
         unitType = unitType.toLowerCase();
         switch (unitType) {
-            case "solder":
+            case "soldier":
                 return new NeutralSolder();
 
             case "archer":

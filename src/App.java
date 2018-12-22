@@ -33,6 +33,16 @@ public class App {
         ArrayList<String> neutralTypes = (ArrayList<String>) commonTypes.clone();
         neutralTypes.add("archer");
 
+        ArrayList<String> possibleNames = new ArrayList<String>();
+        possibleNames.add("John");
+        possibleNames.add("Peter");
+        possibleNames.add("Todd");
+        possibleNames.add("Andrew");
+        possibleNames.add("Gordon");
+        possibleNames.add("Bill");
+        possibleNames.add("Maria");
+        possibleNames.add("Anna");
+
         AbstractFactory allyFactory = FactoryProducer.getFactory("ally");
         AbstractFactory enemyFactory = FactoryProducer.getFactory("enemy");
         AbstractFactory neutralFactory = FactoryProducer.getFactory("neutral");
@@ -43,15 +53,23 @@ public class App {
         int neutralsJoinedToAllies = (new Random()).nextInt(3);  // Number of neutrals to join ally army
         System.out.println("*Allies*");
         for (int i = 0; i < armyNumber; i++) {
-            Unit unit = allyFactory.getAlly(getRandomItem(allyTypes));
+            Unit unit = allyFactory
+                    .getAlly(getRandomItem(allyTypes))
+                    .setName(getRandomItem(possibleNames))
+                    .setAge(20 + (new Random()).nextInt(30))
+                    .spawn();
             if(unit != null) {
-                allyArmy.add(unit.spawn());
+                allyArmy.add(unit);
             }
 
             if(i < neutralsJoinedToAllies) {
-                Unit neutral = neutralFactory.getNeutral(getRandomItem(neutralTypes));
+                Unit neutral = neutralFactory
+                        .getNeutral(getRandomItem(neutralTypes))
+                        .setName(getRandomItem(possibleNames))
+                        .setAge(20 + (new Random()).nextInt(30))
+                        .spawn();
                 if(neutral != null) {
-                    allyArmy.add(neutral.spawn());
+                    allyArmy.add(neutral);
                 }
             }
         }
@@ -62,15 +80,23 @@ public class App {
         int neutralsJoinedToEnemies = (new Random()).nextInt(3);  // Number of neutrals to join enemy army
         System.out.println("*Enemies*");
         for (int i = 0; i < armyNumber; i++) {
-            Unit unit = enemyFactory.getEnemy(getRandomItem(enemyTypes));
+            Unit unit = enemyFactory
+                    .getEnemy(getRandomItem(enemyTypes))
+                    .setName(getRandomItem(possibleNames))
+                    .setAge(20 + (new Random()).nextInt(30))
+                    .spawn();
             if(unit != null) {
-                enemyArmy.add(unit.spawn());
+                enemyArmy.add(unit);
             }
 
             if(i < neutralsJoinedToEnemies) {
-                Unit neutral = neutralFactory.getNeutral(getRandomItem(neutralTypes));
+                Unit neutral = neutralFactory
+                        .getNeutral(getRandomItem(neutralTypes))
+                        .setName(getRandomItem(possibleNames))
+                        .setAge(20 + (new Random()).nextInt(30))
+                        .spawn();
                 if(neutral != null) {
-                    enemyArmy.add(neutral.spawn());
+                    enemyArmy.add(neutral);
                 }
             }
         }
@@ -117,12 +143,12 @@ public class App {
         System.out.println("*Survivors*");
         for(Unit unit: allyArmy) {
             if (!unit.isDead()) {
-                System.out.printf("%s (%s)%n", unit.getClass().getName(), ((IRace) unit).farewell());
+                System.out.printf("%s (%s)%n", unit, ((IRace) unit).farewell());
             }
         }
         for(Unit unit: enemyArmy) {
             if (!unit.isDead()) {
-                System.out.printf("%s (%s)%n", unit.getClass().getName(), ((IRace) unit).farewell());
+                System.out.printf("%s (%s)%n", unit, ((IRace) unit).farewell());
             }
         }
     }
