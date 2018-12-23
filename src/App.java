@@ -2,10 +2,14 @@ import allies.AllyCommander;
 import allies.AllyDragon;
 import allies.AllyMage;
 import allies.AllySoldier;
+import common.ArmyCareTaker;
+import common.ArmyOriginator;
 import common.factory.AbstractFactory;
 import common.factory.FactoryProducer;
+import common.interfaces.Caretaker;
 import common.interfaces.IRace;
 import common.Unit;
+import common.interfaces.Originator;
 import enemies.EnemyCommander;
 import enemies.EnemyDragon;
 import enemies.EnemySoldier;
@@ -69,6 +73,11 @@ public class App {
                 allyArmy.add(neutral);
             }
         }
+        Caretaker allyArmyCaretaker = new ArmyCareTaker();
+        Originator allyArmyOriginator = new ArmyOriginator();
+        allyArmyOriginator.setUnits(allyArmy);
+        allyArmyCaretaker.addMemento(allyArmyOriginator.save());
+
 
         System.out.println();
 
@@ -143,6 +152,11 @@ public class App {
                 System.out.printf("%s (%s)%n", unit, ((IRace) unit).farewell());
             }
         }
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*Resurrecting all allies, using Memento pattern...*");
+        allyArmyOriginator.restore(allyArmyCaretaker.getMemento());
+        System.out.println(allyArmyOriginator);
     }
 
     public static <E> E getRandomItem(ArrayList<E> arrayList) {
