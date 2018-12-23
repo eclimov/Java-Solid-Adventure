@@ -3,6 +3,7 @@ import allies.AllyDragon;
 import allies.AllyMage;
 import allies.AllySoldier;
 import common.ArmyCareTaker;
+import common.ArmyDecorator;
 import common.ArmyOriginator;
 import common.factory.AbstractFactory;
 import common.factory.FactoryProducer;
@@ -154,9 +155,14 @@ public class App {
         }
 
         System.out.println("-----------------------------------------------------");
-        System.out.println("*Resurrecting all allies, using Memento pattern...*");
+        System.out.println("*Roll-back time and resurrect all allies, using Memento pattern...*");
         allyArmyOriginator.restore(allyArmyCaretaker.getMemento());
         System.out.println(allyArmyOriginator);
+
+        System.out.println("-----------------------------------------------------");
+        System.out.println("*Destroying all remained enemies using Decorator pattern*");
+        ArmyDecorator enemyArmyDecorator = new ArmyDecorator(enemyArmy);
+        enemyArmy = enemyArmyDecorator.killEveryone();
     }
 
     public static <E> E getRandomItem(ArrayList<E> arrayList) {
