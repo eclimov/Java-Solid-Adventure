@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class App {
-    public static void main(String[] args) {
+    public void test() {
         ArrayList<String> commonTypes = new ArrayList<String>();
         commonTypes.add("soldier");
         commonTypes.add("commander");
